@@ -235,7 +235,6 @@
             </div>
         </div>
         <!--Footer Top end-->
-        <!-- TODO -->
         <!-- Modal Area Strat -->
         <div class="modal fade quick-view-modal-container" id="quick-view-modal-container" tabindex="-1" role="dialog"
             aria-hidden="true">
@@ -381,28 +380,6 @@
 
                 const imageInput = document.getElementById('image-input');
                 let dropArea = document.getElementById("drop-area");
-
-                // Prevent default drag behaviors
-                ev.preventDefault();
-
-                function dragNdrop(event) {
-                var fileName = URL.createObjectURL(event.target.files[0]);
-                // var preview = document.getElementById("preview");
-                var previewImg = document.createElement("img");
-                previewImg.setAttribute("src", fileName);
-                imageInput.innerHTML = "";
-                imageInput.appendChild(previewImg);
-                }
-
-                // function drag() {
-                //     document.getElementById('uploadFile').parentNode.className = 'draging dragBox';
-                // }
-                // function drop() {
-                //     document.getElementById('uploadFile').parentNode.className = 'dragBox';
-                // }
-
-            
-
 
                 // const imageInput = document.getElementById('image-input');
                 function showPreview(event){
