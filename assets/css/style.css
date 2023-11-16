@@ -205,6 +205,11 @@ img {
   width: 100%;
 }
 
+.section-custom, .main-wrapper {
+  float: left;
+  width: 60%;
+}
+
 .border-bottom {
   border-bottom: 1px solid #eeeeee;
 }
@@ -1299,6 +1304,7 @@ ul.cart-items > li {
 } */
 .input-custom form .form-search-custom input {
   padding: 5px;
+  padding-left: 125px;
   border: 0;
   border-bottom: 1px solid;
   border-top: 1px solid;
@@ -1308,7 +1314,7 @@ ul.cart-items > li {
   /* height: auto; */
   color: #000000;
   /* position: fixed; */
-  height: 50px
+  height: 50px;
   /* -webkit-transform: scale3d(0, 1, 1); */
           /* transform: scale3d(0, 1, 1); */
   /* -webkit-transform-origin: 0 50%; */
