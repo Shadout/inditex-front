@@ -52,14 +52,6 @@
                                 <!--Header Search And Mini Cart Area Start-->
                                 <div class="header-search-cart-area">
                                     <ul>
-                                        <!-- <li><a class="header-search-toggle" href="#"><i
-                                                    class="flaticon-magnifying-glass"></i></a></li> -->
-                                        <!-- <li class="currency-menu"><a href="my-account.html">
-                                                <img style="border-radius: 50%; min-width: 45px; height: 45px;" src="./assets/images/avatarMaria.png" alt="avatar">
-                                        </a></li> -->
-                                        <li class="currency-menu"><a href="my-account.html" style="font-size: 12px; line-height: 12px; margin-right: 45px; width: 100%;">
-                                            MARIA
-                                    </a></li>
                                     <li class="currency-menu"><a href="#" style="font-size: 12px; line-height: 12px; margin-right: 15px; width: 100%;">
                                         AYUDA
                                 </a></li>
@@ -139,6 +131,63 @@
             </button>
         </div>
     </div>
+
+    <div class="col-xl-3 col-lg-4 col-md-5 col-12" style=" margin-top: 20px; margin-bottom: 40px;">
+        <!--Header Search And Mini Cart Area Start-->
+        <div class="filters-button-area" >
+            <ul>
+                <li ><a href="#" style="font-size: 12px; line-height: 12px; margin-right: 15px; width: 100%;">
+                    MUJER
+            </a></li>
+            <li ><a href="#" style="font-size: 12px; line-height: 12px; margin-right: 15px; width: 100%;">
+                HOMBRE
+        </a></li>
+        <li ><a href="#" style="font-size: 12px; line-height: 12px; margin-right: 15px; width: 100%;">
+            NIÑOS
+    </a></li>
+            </ul>
+        </div>
+        <!--Header Search And Mini Cart Area End-->
+    </div>
+
+    <div class="col-xl-3 col-lg-4 col-md-5 col-12">
+        <!--Header Search And Mini Cart Area Start-->
+        <div class="filters-button-area" >
+            <ul>
+                <li  ><a>
+                    <button href="#" class="filters-button">
+                    TALLA
+                </button></a></li>
+            <li ><a >
+                <button href="#" class="filters-button">
+                COLOR
+                </button>
+            </a></li>
+            <li ><a>
+                <button href="#" class="filters-button" id="for-you-filter">
+                FOR YOU
+                </button>
+            </a></li>
+            <!-- TODO -->
+            <!-- <div class="display-buttons"> -->
+                <!-- <li ><a>
+                    <img src="./assets/images/list.png" alt="list" style="width: 18px;">
+                </a></li>
+                <li ><a>
+                    <img src="./assets/images/gallery.png" alt="gallery" style="width: 18px;">
+                </a></li> -->
+            <!-- </div> -->
+            </ul>
+            <div class="for-you-section">
+                <i class="fa fa-times" style="margin-top: -10px; margin-left: -10px; position: absolute;" id="remove-for-you"></i>
+                Para está selección de prendas de fiesta hemos tenido en cuenta tus compras anteriores.  
+                Sabemos que te gusta combinar vestidos y faldas de materiales más sofisticados como la seda o el satén con botas más urbanas y cómodas.
+                Te gusta la ropa ajustada, las prendas más holgadas las combinas con cinturones grandes que marcan tu cintura. 
+                Tu accesorio favorito es el bolso pequeño colgado al hombro.
+            </div>
+        </div>
+        <!--Header Search And Mini Cart Area End-->
+    </div>
     <!-- main-search start -->
 
             <!-- Offcanvas Menu Start -->
@@ -197,7 +246,7 @@
 
 
     <!--Footer section start-->
-    <footer class="footer-section section-custom" style="position: absolute; bottom: 0;">
+    <footer class="footer-section section-custom">
 
         <!--Footer Top start-->
         <div
@@ -409,6 +458,55 @@
         <!-- Placed js at the end of the document so the pages load faster -->
 
         <script>
+            document.addEventListener('DOMContentLoaded', () => {
+
+                const searchFormText = document.getElementById('search-form-text');
+                searchFormText.addEventListener('submit', function (event) {
+                    event.preventDefault(); 
+                    const inputValue = document.getElementById('search-by-text').value;
+                    displayProductsMock()
+                });
+
+        const displayProductsMock = () => {
+
+            const rowContainer = document.querySelector('.product-grid-view .row'); 
+
+            rowContainer.innerHTML = '';
+            const i = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+            const prices = [19.95, 29.95, 39.95, 49.95];
+            i.forEach((j) => { 
+                var price = prices[Math.floor(Math.random()*prices.length)];
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('col-lg-2', 'col-md-4', 'col-sm-6');
+
+                productDiv.innerHTML = `
+                <div id="products-show" class="single-grid-product mb-40 mr-0 ml-0 p-0" style="position: relative">
+                    <div class="product-image p-0">
+                        <a href="single-product.html">
+                            <img src="./assets/images/clothes/IMAGE-${j}.png" class="img-fluid" alt="description" style="width: 375px; height: auto;">
+                        </a>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="single-product.html">name</a></h3>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="single-product.html">${price} EUR</a></h3>
+                    </div>
+                    <div style="position: absolute; right: 0; bottom: 0;">
+                       <img src="./assets/images/Frame.png" alt="save">
+                    </div>
+                </div>
+            `;
+            // Añade el div del producto al contenedor de la fila
+            rowContainer.appendChild(productDiv);
+        })
+    
+        }
+        });
+            
+        </script>
+
+        <!-- <script>
 
                 const imageInput = document.getElementById('image-input');
                 let dropArea = document.getElementById("drop-area");
@@ -544,9 +642,9 @@
                     });
                 };
             });
-        </script>
+        </script> -->
 
-<script>
+<!-- <script>
     window.watsonAssistantChatOptions = {
       integrationID: "c8f27f29-e92b-4040-bd76-87ee6a5593e1", // The ID of this integration.
       region: "eu-de", // The region your integration is hosted in.
@@ -558,7 +656,7 @@
       t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
       document.head.appendChild(t);
     });
-  </script>
+  </script> -->
 
 </body>
 

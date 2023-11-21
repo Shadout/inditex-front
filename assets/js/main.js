@@ -115,6 +115,25 @@ function openUpload() {
 
 };
 openUpload();
+
+/*---------------------------- 
+   3. FOR YOU section
+-----------------------------*/
+function forYouFilter() {
+    var searchTrigger = $('#for-you-filter'),
+        endTriggersearch = $('#remove-for-you'),
+        container = $('.for-you-section');
+
+    searchTrigger.on('click', function() {
+        container.addClass('inside');
+    });
+
+    endTriggersearch.on('click', function() {
+        container.removeClass('inside');
+    });
+
+};
+forYouFilter();
 /*--
     - Background Image
 ------------------------------------------*/
