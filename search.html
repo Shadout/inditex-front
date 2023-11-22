@@ -208,21 +208,25 @@
             </ul>
             <div class="for-you-section">
                 <i class="fa fa-times" style="margin-top: -10px; margin-left: -10px; position: absolute;" id="remove-for-you"></i>
-                Para está selección de prendas de fiesta hemos tenido en cuenta tus compras anteriores.  
-                Sabemos que te gusta combinar vestidos y faldas de materiales más sofisticados como la seda o el satén con botas más urbanas y cómodas.
-                Te gusta la ropa ajustada, las prendas más holgadas las combinas con cinturones grandes que marcan tu cintura. 
-                Tu accesorio favorito es el bolso pequeño colgado al hombro.
+                <div style="margin-bottom: 30px;">
+                    Para está selección de prendas de fiesta hemos tenido en cuenta tus compras anteriores.  
+                    Sabemos que te gusta combinar vestidos y faldas de materiales más sofisticados como la seda o el satén con botas más urbanas y cómodas.
+                    Te gusta la ropa ajustada, las prendas más holgadas las combinas con cinturones grandes que marcan tu cintura. 
+                    Tu accesorio favorito es el bolso pequeño colgado al hombro.
+                </div>
+                <div class="for-you-button" style="left: 0; margin-left: -1px;">
+                    LIMPIAR
+                </div>
+                <div class="for-you-button" style="right: 0; margin-right: -1px;">
+                    RESULTADOS MOSTRADOS (12)
+                </div>
             </div>
         </div>
         <!--Header Search And Mini Cart Area End-->
     </div>
-    <!-- main-search start -->
+  
 
-            <!-- Offcanvas Menu Start -->
-        
-
-
-        </div>
+</div>
         <!-- Offcanvas Menu End -->
 
     <!-- main-search start -->
@@ -479,7 +483,7 @@
             i.forEach((j) => { 
                 var price = prices[Math.floor(Math.random()*prices.length)];
                 const productDiv = document.createElement('div');
-                productDiv.classList.add('col-lg-2', 'col-md-4', 'col-sm-6');
+                productDiv.classList.add('col-lg-2', 'col-md-3', 'col-sm-4', 'col-xs-6');
 
                 productDiv.innerHTML = `
                 <div id="products-show" class="single-grid-product mb-40 mr-0 ml-0 p-0" style="position: relative">

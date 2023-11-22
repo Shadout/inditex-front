@@ -991,9 +991,25 @@ header.header.is-sticky .header-middle {
   line-height: 18px;
   margin-left: 117px;
   z-index: 50;
-  position: absolute;
+  position: relative;
   visibility: hidden;
   height: 0px;
+}
+
+.for-you-button{
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  width: 171px;
+  height: 30px;
+  padding: 10px;
+  font-size: 10px;
+  line-height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -1px;
 }
 
 .for-you-section.inside {
