@@ -278,7 +278,7 @@
                     <!--Footer Widget start-->
                     <div class="footer-widget col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-40 mb-xs-35">
                         <p class="mb-10"  style="font-size: 10px;">SÍGUENOS</p>
-                        <p class="mb-5" style="font-size: 9px;">NEWLETTER</p>
+                        <p class="mb-5" style="font-size: 9px;">NEWSLETTER</p>
                         <p class="mb-5" style="font-size: 9px;">TIKTOK</p>
                         <p class="mb-5" style="font-size: 9px;">INSTAGRAM</p>
                         <p class="mb-5" style="font-size: 9px;">FACEBOOK</p>
@@ -512,7 +512,7 @@
             
         </script>
 
-        <!-- <script>
+         <script>
 
                 const imageInput = document.getElementById('image-input');
                 let dropArea = document.getElementById("drop-area");
@@ -527,128 +527,128 @@
                 }
                 }
 
-            document.addEventListener('DOMContentLoaded', () => {
+            // document.addEventListener('DOMContentLoaded', () => {
 
-                const searchForm = document.getElementById('search-form');
+            //     const searchForm = document.getElementById('search-form');
                 
 
-                searchForm.addEventListener('submit', function (event) {
-                    event.preventDefault(); 
-                    const imageInput = document.getElementById('image-input');
+            //     searchForm.addEventListener('submit', function (event) {
+            //         event.preventDefault(); 
+            //         const imageInput = document.getElementById('image-input');
 
-                    if (imageInput.files.length > 0) {
-                        const formData = new FormData();
-                        formData.append('file', imageInput.files[0]);
+            //         if (imageInput.files.length > 0) {
+            //             const formData = new FormData();
+            //             formData.append('file', imageInput.files[0]);
                         
-                        searchProductsByImage(formData);
-                    } 
-                     else {
-                        console.log('Please select an image to search.');
-                    }
-                });
+            //             searchProductsByImage(formData);
+            //         } 
+            //          else {
+            //             console.log('Please select an image to search.');
+            //         }
+            //     });
 
-                const searchFormText = document.getElementById('search-form-text');
-                searchFormText.addEventListener('submit', function (event) {
-                    event.preventDefault(); 
-                    const inputValue = document.getElementById('search-by-text').value;
+            //     const searchFormText = document.getElementById('search-form-text');
+            //     searchFormText.addEventListener('submit', function (event) {
+            //         event.preventDefault(); 
+            //         const inputValue = document.getElementById('search-by-text').value;
 
-                    if (inputValue != null || inputValue != undefined) {
-                        searchProductsByText(inputValue)
-                    }
-                     else {
-                        console.log('Please select an item to search.');
-                    }
-                });
+            //         if (inputValue != null || inputValue != undefined) {
+            //             searchProductsByText(inputValue)
+            //         }
+            //          else {
+            //             console.log('Please select an item to search.');
+            //         }
+            //     });
                 
 
 
-                const searchProductsByImage = async (formData) => {
-                    try {
-                        const response = await fetch('http://localhost:5050/imgsearch', {
+            //     const searchProductsByImage = async (formData) => {
+            //         try {
+            //             const response = await fetch('http://localhost:5050/imgsearch', {
 
-                            method: 'POST',
-                            body: formData
+            //                 method: 'POST',
+            //                 body: formData
 
-                        });
+            //             });
 
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
+            //             if (!response.ok) {
+            //                 throw new Error(`HTTP error! status: ${response.status}`);
+            //             }
 
-                        const data = await response.json();
+            //             const data = await response.json();
 
-                        displayProducts(data);
+            //             displayProducts(data);
 
-                    } catch (error) {
-                        console.error('There was an error with the image search:', error);
-                    }
-                };
+            //         } catch (error) {
+            //             console.error('There was an error with the image search:', error);
+            //         }
+            //     };
 
-                const searchProductsByText = async (input) => {
-                    try {
-                        const response = await fetch('http://localhost:5050/textsearch', {
+            //     const searchProductsByText = async (input) => {
+            //         try {
+            //             const response = await fetch('http://localhost:5050/textsearch', {
 
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({"input": input})
+            //                 method: 'POST',
+            //                 headers: {
+            //                     'Accept': 'application/json',
+            //                     'Content-Type': 'application/json'
+            //                 },
+            //                 body: JSON.stringify({"input": input})
 
-                        });
+            //             });
 
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
+            //             if (!response.ok) {
+            //                 throw new Error(`HTTP error! status: ${response.status}`);
+            //             }
 
-                        const data = await response.json();
-                        displayProducts(data);
+            //             const data = await response.json();
+            //             displayProducts(data);
 
-                    } catch (error) {
-                        console.error('There was an error with the text search:', error);
-                    }
-                };
+            //         } catch (error) {
+            //             console.error('There was an error with the text search:', error);
+            //         }
+            //     };
 
-                const displayProducts = (products) => {
+            //     const displayProducts = (products) => {
 
-                    const rowContainer = document.querySelector('.product-grid-view .row'); 
+            //         const rowContainer = document.querySelector('.product-grid-view .row'); 
 
 
-                    rowContainer.innerHTML = '';
+            //         rowContainer.innerHTML = '';
 
-                    const captionContain = document.querySelector('#caption-container');
-                    captionContain.innerHTML = '';
+            //         const captionContain = document.querySelector('#caption-container');
+            //         captionContain.innerHTML = '';
 
-                    const descriptionDiv = document.createElement('div');
-                    descriptionDiv.innerHTML= `<div style="margin-left: 20px; ">${products.caption}</div>`;
-                    captionContain.appendChild(descriptionDiv);
+            //         const descriptionDiv = document.createElement('div');
+            //         descriptionDiv.innerHTML= `<div style="margin-left: 20px; ">${products.caption}</div>`;
+            //         captionContain.appendChild(descriptionDiv);
 
                     
-                    products.result.forEach((product) => {
+            //         products.result.forEach((product) => {
 
-                        const productDiv = document.createElement('div');
-                        productDiv.classList.add('col-lg-3', 'col-md-6', 'col-sm-6');
+            //             const productDiv = document.createElement('div');
+            //             productDiv.classList.add('col-lg-3', 'col-md-6', 'col-sm-6');
 
-                        productDiv.innerHTML = `
-                        <div id="products-show" class="single-grid-product mb-40" >
-                            <div class="product-image">
-                                <a href="single-product.html">
-                                    <img src="${product.image_url}" class="img-fluid" alt="${product.description}">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <h3 class="title"><a href="single-product.html">${product.name}</a></h3>
-                            </div>
-                        </div>
-                    `;
-                    setTimeout(function(){
-                    // Añade el div del producto al contenedor de la fila
-                    rowContainer.appendChild(productDiv);
-                    },5000);
-                    });
-                };
-            });
-        </script> -->
+            //             productDiv.innerHTML = `
+            //             <div id="products-show" class="single-grid-product mb-40" >
+            //                 <div class="product-image">
+            //                     <a href="single-product.html">
+            //                         <img src="${product.image_url}" class="img-fluid" alt="${product.description}">
+            //                     </a>
+            //                 </div>
+            //                 <div class="product-content">
+            //                     <h3 class="title"><a href="single-product.html">${product.name}</a></h3>
+            //                 </div>
+            //             </div>
+            //         `;
+            //         setTimeout(function(){
+            //         // Añade el div del producto al contenedor de la fila
+            //         rowContainer.appendChild(productDiv);
+            //         },5000);
+            //         });
+            //     };
+            // });
+        </script> 
 
 <!-- <script>
     window.watsonAssistantChatOptions = {

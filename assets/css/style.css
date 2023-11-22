@@ -991,7 +991,7 @@ header.header.is-sticky .header-middle {
   line-height: 18px;
   margin-left: 117px;
   z-index: 50;
-  position: relative;
+  position: absolute;
   visibility: hidden;
   height: 0px;
 }
