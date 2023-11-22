@@ -969,6 +969,7 @@ header.header.is-sticky .header-middle {
   margin-left: 120px;;
   width: 100%;
   position: relative;
+  margin-bottom: 20px;
 }
 .filters-button-area > ul > li {
   display: inline-block;
