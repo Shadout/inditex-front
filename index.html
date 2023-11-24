@@ -208,11 +208,21 @@
             </ul>
             <div class="for-you-section">
                 <i class="fa fa-times" style="margin-top: -10px; margin-left: -10px; position: absolute;" id="remove-for-you"></i>
-                <div style="margin-bottom: 30px;">
+                <div style="margin-bottom: 20px;">
                     Para está selección de prendas de fiesta hemos tenido en cuenta tus compras anteriores.  
                     Sabemos que te gusta combinar vestidos y faldas de materiales más sofisticados como la seda o el satén con botas más urbanas y cómodas.
                     Te gusta la ropa ajustada, las prendas más holgadas las combinas con cinturones grandes que marcan tu cintura. 
                     Tu accesorio favorito es el bolso pequeño colgado al hombro.
+                </div>
+                <div class="for-you-why" style="height: 35px; padding-top: 8px; padding-bottom: 8px;">
+                    ¿POR QUÉ HEMOS ELEGIDO ESTAS PRENDAS PARA TI?
+                </div>
+                <div class="for-you-why" style=" margin-bottom: 50px; margin-top: -1px;">
+                    Tu color favorito es el negro, en tus últimos pedidos el color negro es el protagonista, también te has interesado por prendas con tono metálico y color plata. 
+                    <img src="./assets/images/forYou.png" alt="for-you">
+                    Analizando los looks que has compartido con nosotros y tus compras vemos que te gusta mucho usar zapatos de tacón, pero también botas urbanas, planas de suela track que te encanta combinar con ropa más elegante dando un toque rompedor.
+                    No eres muy de accesorios, aunque si que alguna vez te ha llamado la atención alguna pulsera, sobre todo anchas y en tonos dorados.
+                    Nunca vas sin tu bolso, te gustan pequeños y colgados al hombro, lo bolsos te gustan muy llamativos y te atreves con cualquier color o material ¡incluso lentejuelas!
                 </div>
                 <div class="for-you-button" style="left: 0; margin-left: -1px;">
                     LIMPIAR
@@ -463,7 +473,7 @@
 
         <!-- Placed js at the end of the document so the pages load faster -->
 
-        <script>
+        <!-- <script>
             document.addEventListener('DOMContentLoaded', () => {
 
                 const searchFormText = document.getElementById('search-form-text');
@@ -510,7 +520,7 @@
         }
         });
             
-        </script>
+        </script> -->
 
          <script>
 
@@ -527,127 +537,135 @@
                 }
                 }
 
-            // document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('DOMContentLoaded', () => {
 
-            //     const searchForm = document.getElementById('search-form');
+                const searchForm = document.getElementById('search-form');
                 
 
-            //     searchForm.addEventListener('submit', function (event) {
-            //         event.preventDefault(); 
-            //         const imageInput = document.getElementById('image-input');
+                searchForm.addEventListener('submit', function (event) {
+                    event.preventDefault(); 
+                    const imageInput = document.getElementById('image-input');
 
-            //         if (imageInput.files.length > 0) {
-            //             const formData = new FormData();
-            //             formData.append('file', imageInput.files[0]);
+                    if (imageInput.files.length > 0) {
+                        const formData = new FormData();
+                        formData.append('file', imageInput.files[0]);
                         
-            //             searchProductsByImage(formData);
-            //         } 
-            //          else {
-            //             console.log('Please select an image to search.');
-            //         }
-            //     });
+                        searchProductsByImage(formData);
+                    } 
+                     else {
+                        console.log('Please select an image to search.');
+                    }
+                });
 
-            //     const searchFormText = document.getElementById('search-form-text');
-            //     searchFormText.addEventListener('submit', function (event) {
-            //         event.preventDefault(); 
-            //         const inputValue = document.getElementById('search-by-text').value;
+                const searchFormText = document.getElementById('search-form-text');
+                searchFormText.addEventListener('submit', function (event) {
+                    event.preventDefault(); 
+                    const inputValue = document.getElementById('search-by-text').value;
 
-            //         if (inputValue != null || inputValue != undefined) {
-            //             searchProductsByText(inputValue)
-            //         }
-            //          else {
-            //             console.log('Please select an item to search.');
-            //         }
-            //     });
+                    if (inputValue != null || inputValue != undefined) {
+                        searchProductsByText(inputValue)
+                    }
+                     else {
+                        console.log('Please select an item to search.');
+                    }
+                });
                 
 
 
-            //     const searchProductsByImage = async (formData) => {
-            //         try {
-            //             const response = await fetch('http://localhost:5050/imgsearch', {
+                const searchProductsByImage = async (formData) => {
+                    try {
+                        const response = await fetch('http://localhost:5050/imgsearch', {
 
-            //                 method: 'POST',
-            //                 body: formData
+                            method: 'POST',
+                            body: formData
 
-            //             });
+                        });
 
-            //             if (!response.ok) {
-            //                 throw new Error(`HTTP error! status: ${response.status}`);
-            //             }
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
 
-            //             const data = await response.json();
+                        const data = await response.json();
 
-            //             displayProducts(data);
+                        displayProducts(data);
 
-            //         } catch (error) {
-            //             console.error('There was an error with the image search:', error);
-            //         }
-            //     };
+                    } catch (error) {
+                        console.error('There was an error with the image search:', error);
+                    }
+                };
 
-            //     const searchProductsByText = async (input) => {
-            //         try {
-            //             const response = await fetch('http://localhost:5050/textsearch', {
+                const searchProductsByText = async (input) => {
+                    try {
+                        const response = await fetch('http://localhost:5050/textsearch', {
 
-            //                 method: 'POST',
-            //                 headers: {
-            //                     'Accept': 'application/json',
-            //                     'Content-Type': 'application/json'
-            //                 },
-            //                 body: JSON.stringify({"input": input})
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({"input": input})
 
-            //             });
+                        });
 
-            //             if (!response.ok) {
-            //                 throw new Error(`HTTP error! status: ${response.status}`);
-            //             }
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
 
-            //             const data = await response.json();
-            //             displayProducts(data);
+                        const data = await response.json();
+                        displayProducts(data);
 
-            //         } catch (error) {
-            //             console.error('There was an error with the text search:', error);
-            //         }
-            //     };
+                    } catch (error) {
+                        console.error('There was an error with the text search:', error);
+                    }
+                };
 
-            //     const displayProducts = (products) => {
+                const displayProducts = (products) => {
 
-            //         const rowContainer = document.querySelector('.product-grid-view .row'); 
+                    const rowContainer = document.querySelector('.product-grid-view .row'); 
 
 
-            //         rowContainer.innerHTML = '';
+                    rowContainer.innerHTML = '';
 
-            //         const captionContain = document.querySelector('#caption-container');
-            //         captionContain.innerHTML = '';
+                    const captionContain = document.querySelector('#caption-container');
+                    captionContain.innerHTML = '';
 
-            //         const descriptionDiv = document.createElement('div');
-            //         descriptionDiv.innerHTML= `<div style="margin-left: 20px; ">${products.caption}</div>`;
-            //         captionContain.appendChild(descriptionDiv);
+                    const descriptionDiv = document.createElement('div');
+                    descriptionDiv.innerHTML= `<div style="margin-left: 20px; ">${products.caption}</div>`;
+                    captionContain.appendChild(descriptionDiv);
 
+                    const prices = [19.95, 29.95, 39.95, 49.95];
                     
-            //         products.result.forEach((product) => {
+                    products.result.forEach((product) => {
+                        var price = prices[Math.floor(Math.random()*prices.length)];
 
-            //             const productDiv = document.createElement('div');
-            //             productDiv.classList.add('col-lg-3', 'col-md-6', 'col-sm-6');
+                        const productDiv = document.createElement('div');
+                        productDiv.classList.add('col-lg-2', 'col-md-3', 'col-sm-4', 'col-xs-6');
 
-            //             productDiv.innerHTML = `
-            //             <div id="products-show" class="single-grid-product mb-40" >
-            //                 <div class="product-image">
-            //                     <a href="single-product.html">
-            //                         <img src="${product.image_url}" class="img-fluid" alt="${product.description}">
-            //                     </a>
-            //                 </div>
-            //                 <div class="product-content">
-            //                     <h3 class="title"><a href="single-product.html">${product.name}</a></h3>
-            //                 </div>
-            //             </div>
-            //         `;
-            //         setTimeout(function(){
-            //         // Añade el div del producto al contenedor de la fila
-            //         rowContainer.appendChild(productDiv);
-            //         },5000);
-            //         });
-            //     };
-            // });
+                        productDiv.innerHTML = `
+                        <div id="products-show" class="single-grid-product mb-40 mr-0 ml-0 p-0" style="position: relative">
+                            <div class="product-image p-0">
+                                <a href="single-product.html">
+                                    <img src="${product.image_url}" class="img-fluid" alt="${product.description}" style="width: 375px; height: auto;">
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="single-product.html">${product.product_link}</a></h3>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="single-product.html">${price} EUR</a></h3>
+                            </div>
+                            <div style="position: absolute; right: 0; bottom: 0;">
+                            <img src="./assets/images/Frame.png" alt="save">
+                            </div>
+                        </div>
+                    `;
+                    setTimeout(function(){
+                    // Añade el div del producto al contenedor de la fila
+                    rowContainer.appendChild(productDiv);
+                    },5000);
+                    });
+                };
+            });
         </script> 
 
 <!-- <script>
