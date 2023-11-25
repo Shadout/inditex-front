@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,7 +65,7 @@
             text-align: left;
             height: 1px;
         }
-        
+
 
 
 
@@ -193,15 +194,19 @@
         }
     </style>
 </head>
+
 <body>
     <div class="header-single-product"><img style="margin-left: 167px;" src="assets/images/logo.png" alt=""></div>
     <div class="flex-container">
         <img src="assets/images/vestido.jpg" alt="Vestido" class="imagen-vestido">
-        
+
         <div class="product-container">
-            <div class="product-title">VESTIDO MIDI ASIMÉTRICO DRAPEADO <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00008 10.1587L11.3334 13.3334V2.66669H4.66675V13.3334L8.00008 10.1587ZM5.33341 11.778L8.00008 9.23802L10.6667 11.778V3.33335H5.33341V11.778Z" fill="black" stroke="black"/>
-              </svg></div>
+            <div class="product-title">VESTIDO MIDI ASIMÉTRICO DRAPEADO <svg xmlns="http://www.w3.org/2000/svg"
+                    width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M8.00008 10.1587L11.3334 13.3334V2.66669H4.66675V13.3334L8.00008 10.1587ZM5.33341 11.778L8.00008 9.23802L10.6667 11.778V3.33335H5.33341V11.778Z"
+                        fill="black" stroke="black" />
+                </svg></div>
             <span class="product-price">39,95 EUR</span>
             <div class="product-description">
                 Vestido ajustado de escote asimétrico y manga larga. Detalle de abertura lateral en cintura y frunces
@@ -228,20 +233,76 @@
             </div>
             <div class="add-button">AÑADIR</div>
         </div>
-       
+
         <div class="product-container-2">
 
             <button class="forU-button">FOR YOU</button>
             <div class="product-recommendations">
                 Este vestido es el match perfecto con tus zapatos para la fiesta de navidad, es abrigado pero su corte
-                cut-out lo hace perfecto para una ocasión especial. 
-                
+                cut-out lo hace perfecto para una ocasión especial.
+
                 El color negro combina a la perfección con el dorado de los zapatos.
             </div>
         </div>
 
     </div>
 
-<img style="width: 100%;" src="assets/images/productos-fila.png" alt="">
+    <!-- <img style="width: 100%;" src="assets/images/productos-fila.png" alt=""> -->
+
+    <!-- <script> document.addEventListener('DOMContentLoaded', () => {
+            const productData = JSON.parse(localStorage.getItem('productData'));
+            console.log('buenassss',productData)
+        });
+    </script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+    
+            if (selectedProduct) {
+                // Actualiza la imagen del producto
+                const imageElement = document.querySelector('.imagen-vestido');
+                if (imageElement) {
+                    imageElement.src = selectedProduct.image_url;
+                    imageElement.alt = selectedProduct.description;
+                }
+    
+                // Actualiza el título del producto
+                const titleElement = document.querySelector('.product-title');
+                if (titleElement) {
+                    titleElement.textContent = selectedProduct.product_link;
+                }
+    
+                // Actualiza la descripción del producto
+                const descriptionElement = document.querySelector('.product-description');
+                if (descriptionElement) {
+                    descriptionElement.textContent = selectedProduct.description;
+                }
+    
+                // Actualiza el precio del producto (ajusta según cómo recibes el precio en tu JSON)
+                const priceElement = document.querySelector('.product-price');
+                if (priceElement) {
+                    priceElement.textContent = selectedProduct.price + ' EUR'; // Suponiendo que 'price' es un campo en tu JSON
+                }
+    
+                // Actualiza el código de color del producto
+                const colorElement = document.querySelector('.product-code');
+                if (colorElement) {
+                    colorElement.textContent = selectedProduct.color;
+                }
+    
+                // Actualiza las recomendaciones para el usuario
+                const forYouElement = document.querySelector('.forU-button');
+                const recommendationsElement = document.querySelector('.product-recommendations');
+                if (forYouElement && recommendationsElement) {
+                    forYouElement.textContent = 'FOR YOU';
+                    recommendationsElement.textContent = selectedProduct.for_you;
+                }
+    
+                // Aquí puedes continuar con cualquier otro elemento que necesites actualizar
+            }
+        });
+    </script>
+    
 </body>
+
 </html>
