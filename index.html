@@ -18,30 +18,29 @@
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <style>
-        .upload-section-box {
-            border: 2px dashed #aaa;
-            border-radius: 10px;
-            padding: 10px;
+        /* .upload-section-box { */
+            /* border: 2px dashed #aaa; */
+            /* padding: 10px;
             margin: auto;
-            width: fit-content;
+            width: fit-content; */
             /* Esto ajustará el ancho del contenedor al contenido */
-            min-width: 250px;
+            /* min-width: 550px; */
             /* Asegúrate de tener un ancho mínimo para la caja */
-            max-width: 90%;
+            /* max-width: 90%; */
             /* Puedes ajustar esto para que la caja no sea demasiado ancha */
-            display: flex;
+            /* display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; */
             /* Opcional: agrega un color de fondo si es necesario */
-        }
+        /* } */
 
         /* div#drop-area.upload-section-box {
     display: contents;
 } */
 
-        .upload-instructions {
+        /* .upload-instructions {
             display: block;
             text-align: center;
             margin: 20px 0;
@@ -53,39 +52,35 @@
             color: #06f;
             cursor: pointer;
             text-decoration: underline;
-        }
+        } */
 
-        .preview {
+        /* .preview {
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: center; */
             /* Centra horizontalmente la imagen */
-            overflow: hidden;
+            /* overflow: hidden; */
             /* Oculta cualquier contenido que desborde el contenedor de la vista previa */
-        }
+        /* } */
 
-        .preview img {
-            max-width: 100%;
-            max-height: 500px;
+        /* .preview img { */
+            /* max-width: 100%;
+            max-height: 500px; */
             /* Ajusta la altura máxima si es necesario */
-            height: auto;
-            border-radius: 10px;
+            /* height: auto;
+            border-radius: 10px; */
             /* Opcional: si quieres bordes redondeados */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
             /* Opcional: agrega sombra a la imagen */
-            display: block;
+            /* display: block; */
             /* Esto asegura que la imagen no se muestre en línea */
-            object-fit: contain;
+            /* object-fit: contain; */
             /* Esto asegura que la imagen se ajuste dentro del contenedor sin deformarse */
-        }
+        /* } */
 
-
-
-
-
-        .preview {
+        /* .preview {
             margin-top: 20px;
-        }
+        } */
     </style>
 </head>
 
@@ -199,7 +194,7 @@
                     </button> -->
                         </div>
                     </form>
-                    <button class="upload-image-button">
+                    <button class="upload-image-button" onclick="imgButtonClicked()">
                         <img src="./assets/images/Camera.png" style="margin-right: 8px" alt="camera"></img>
                         IMAGEN
                     </button>
@@ -225,13 +220,17 @@
             </div>
 
             <div class="upload-section">
-                <form id="search-form" enctype="multipart/form-data">
+                <div  class="close-upload">
+                    <i class="fa fa-times"></i>
+                </div>
+                <form id="search-form" enctype="multipart/form-data" style="position: relative;">
                     <div id="drop-area" class="upload-section-box">
-                        <div class="upload-instructions">Arrastra una imagen o <label for="image-input"
-                                class="file-upload-label">selecciona un archivo</label></div>
+                        <div class="upload-instructions" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">Arrastra una imagen o 
+                            <label for="image-input" class="file-upload-label" style="text-decoration: underline; cursor: pointer;">
+                                selecciona un archivo</label></div>
                         <input type="file" id="image-input" accept="image/*" style="display: none;">
                         <div class="preview">
-                            <img id="file-ip-1-preview" style="display: none;">
+                            <img id="file-ip-1-preview" >
                         </div>
                     </div>
                     <button type="submit" class="upload-button">SUBIR</button>
@@ -597,7 +596,15 @@
         </script> -->
 
     <script>
+        var imgButton = false;
+        function imgButtonClicked() {
+            imgButton = true;
+            document.getElementById('search-by-text').value = "";
+            document.querySelector('.product-grid-view .row').innerHTML='';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            
             const searchForm = document.getElementById('search-form');
             const imageInput = document.getElementById('image-input');
             let dropArea = document.getElementById('drop-area');
@@ -617,13 +624,11 @@
                 if (event.dataTransfer.files.length > 0) {
                     imageInput.files = event.dataTransfer.files;
                     showPreview();
-                    dropArea.style.display = "contents";
-                    dropArea.style.top = "0";
+                    // dropArea.style.display = "contents";
+                    // dropArea.style.top = "0";
 
 
-                    imagePreview.style.border = "1px solid"
-                    
-
+                    // imagePreview.style.border = "1px solid"
                 }
             });
 
@@ -639,10 +644,10 @@
                     var src = URL.createObjectURL(imageInput.files[0]);
                     var preview = document.getElementById("file-ip-1-preview");
                     preview.src = src;
-                    preview.style.display = "block";
+                    // preview.style.display = "flex";
 
                     // Cambia el display a contents si hay una imagen
-                    dropArea.style.display = 'contents';
+                    // dropArea.style.display = 'contents';
                 } else {
                     // Vuelve al estilo original si no hay una imagen
                     dropArea.style.display = 'flex';
@@ -666,13 +671,13 @@
             searchFormText.addEventListener('submit', function (event) {
                 event.preventDefault();
                 const inputValue = document.getElementById('search-by-text').value;
-
-                if (inputValue != null || inputValue != undefined) {
-                    searchProductsByText(inputValue)
-                }
-                else {
-                    console.log('Please select an item to search.');
-                }
+             
+                    if (inputValue != null || inputValue != undefined) {
+                        searchProductsByText(inputValue)
+                    }
+                    else {
+                        console.log('Please select an item to search.');
+                    }
             });
 
             const searchProductsByImage = async (formData) => {
@@ -687,6 +692,7 @@
                     }
 
                     const data = await response.json();
+                    imgButton = false;
                     displayProducts(data);
 
                 } catch (error) {
@@ -710,6 +716,7 @@
                     }
 
                     const data = await response.json();
+                    imgButton = false;
                     displayProducts(data);
 
                 } catch (error) {
@@ -721,7 +728,9 @@
                 const rowContainer = document.querySelector('.product-grid-view .row');
                 rowContainer.innerHTML = '';
 
+                const prices = [19.95, 29.95, 39.95, 49.95];
                 products.result.forEach((product) => {
+                    var price = prices[Math.floor(Math.random()*prices.length)];
                     const productDiv = document.createElement('div');
                     productDiv.classList.add('col-lg-2', 'col-md-3', 'col-sm-4', 'col-xs-6');
 
@@ -734,13 +743,14 @@
                                     <h3 class="title"><a href="javascript:void(0);">${product.product_link}</a></h3>
                                 </div>
                                 <div class="product-content">
-                                    <h3 class="title"><a href="javascript:void(0);">${product.price} EUR</a></h3>
+                                    <h3 class="title"><a href="javascript:void(0);">${price} EUR</a></h3>
                                 </div>
                                 <div style="position: absolute; right: 0; bottom: 0;">
                                     <img src="./assets/images/Frame.png" alt="save">
                                 </div>
                             </div>
                         `;
+                        
 
                     productDiv.addEventListener('click', () => {
                         localStorage.setItem('selectedProduct', JSON.stringify(product));

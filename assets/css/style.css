@@ -1434,6 +1434,7 @@ ul.cart-items > li {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+  margin-bottom: 30px;
 }
 .upload-display{
   display: block;
@@ -1443,9 +1444,11 @@ ul.cart-items > li {
   background: #F7F3F2; 
   border: 2px #C6C6C6 dotted;
   width: 552px;
-  min-height: 227px;
+  height: auto;
   display: block;
   justify-content: center;
+  align-items: center;
+  border-radius: 0px;
   align-items: center;
 }
 .upload-fixed {
@@ -1495,6 +1498,7 @@ ul.cart-items > li {
   justify-content: center;
   position: absolute;
   right: 0;
+  z-index: 5;
 }
 
 .button-search-custom {
