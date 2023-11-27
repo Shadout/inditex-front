@@ -230,7 +230,7 @@
                     </div>
                 </div>
                 <div class="watsonX-body">
-                    Me gustaría que un asesor de imagen encuentre la combinación de ropa perfecta para ir a la fiesta de navidad de la empresa, que me muestre una colección de prendas y estilos ideales para esta ocasión especial. Detalla diferentes conjuntos que fusionen la alegría navideña con la formalidad requerida para el entorno corporativo. Que Incluya recomendaciones específicas sobre prendas, colores, tejidos y accesorios adecuados para hombres, teniendo en cuenta el contexto corporativo y la atmósfera festiva de la celebración. Además, que explore cómo estos atuendos pueden expresar personalidad y estilo mientras se mantienen dentro del código de vestimenta empresarial.
+                    
                 </div>
             </div>
 
@@ -615,155 +615,135 @@
             
         </script> -->
 
-    <script>
-        var imgButton = false;
-        function imgButtonClicked() {
-            imgButton = true;
-            document.getElementById('search-by-text').value = "";
-            document.querySelector('.product-grid-view .row').innerHTML='';
-        }
-
-        var loadingContainer = $('.loader-container');
-
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            const searchForm = document.getElementById('search-form');
-            const imageInput = document.getElementById('image-input');
-            let dropArea = document.getElementById('drop-area');
-            let uploadArea = document.getElementById('upload-section-box');
-            let imagePreview = document.getElementById('file-ip-1-preview');
-            // Previene el comportamiento por defecto cuando un archivo es arrastrado sobre el área
-            dropArea.addEventListener('dragover', (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-            });
-
-            // Maneja el evento de soltar el archivo
-            dropArea.addEventListener('drop', (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-
-                if (event.dataTransfer.files.length > 0) {
-                    imageInput.files = event.dataTransfer.files;
-                    showPreview();
-                    // dropArea.style.display = "contents";
-                    // dropArea.style.top = "0";
-
-
-                    // imagePreview.style.border = "1px solid"
-                }
-            });
-
-            // Maneja el cambio en el input de tipo file
-            imageInput.addEventListener('change', showPreview);
-
-            // Función para mostrar la previsualización de la imagen
-            function showPreview() {
-                const imageInput = document.getElementById('image-input');
-                const dropArea = document.getElementById('drop-area');
-
-                if (imageInput.files.length > 0) {
-                    var src = URL.createObjectURL(imageInput.files[0]);
-                    var preview = document.getElementById("file-ip-1-preview");
-                    preview.src = src;
-                    // preview.style.display = "flex";
-
-                    // Cambia el display a contents si hay una imagen
-                    // dropArea.style.display = 'contents';
-                } else {
-                    // Vuelve al estilo original si no hay una imagen
-                    dropArea.style.display = 'flex';
-                }
+        <script>
+            var imgButton = false;
+            function imgButtonClicked() {
+                imgButton = true;
+                document.getElementById('search-by-text').value = "";
+                document.querySelector('.product-grid-view .row').innerHTML = '';
+                document.querySelector('.watsonX-body').textContent = 'Contenido después de una búsqueda por imagen';
             }
-
-            searchForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-                loadingContainer.addClass('inside');
-
-                if (imageInput.files.length > 0) {
-                    const formData = new FormData();
-                    formData.append('file', imageInput.files[0]);
-
-                    searchProductsByImage(formData);
-                } else {
-                    console.log('Please select an image to search.');
+        
+            var loadingContainer = $('.loader-container');
+        
+            document.addEventListener('DOMContentLoaded', () => {
+                const searchForm = document.getElementById('search-form');
+                const imageInput = document.getElementById('image-input');
+                let dropArea = document.getElementById('drop-area');
+                const watsonXBody = document.querySelector('.watsonX-body');
+        
+                dropArea.addEventListener('dragover', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
+        
+                dropArea.addEventListener('drop', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (event.dataTransfer.files.length > 0) {
+                        imageInput.files = event.dataTransfer.files;
+                        showPreview();
+                    }
+                });
+        
+                imageInput.addEventListener('change', showPreview);
+        
+                function showPreview() {
+                    if (imageInput.files.length > 0) {
+                        var src = URL.createObjectURL(imageInput.files[0]);
+                        var preview = document.getElementById("file-ip-1-preview");
+                        preview.src = src;
+                    } else {
+                        dropArea.style.display = 'flex';
+                    }
                 }
-            });
-
-            const searchFormText = document.getElementById('search-form-text');
-            searchFormText.addEventListener('submit', function (event) {
-                document.querySelector('.product-grid-view .row').innerHTML='';
-                loadingContainer.addClass('inside');
-                event.preventDefault();
-                const inputValue = document.getElementById('search-by-text').value;
-             
-                    if (inputValue != null || inputValue != undefined) {
-                        searchProductsByText(inputValue)
+        
+                searchForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    loadingContainer.addClass('inside');
+        
+                    if (imageInput.files.length > 0) {
+                        const formData = new FormData();
+                        formData.append('file', imageInput.files[0]);
+        
+                        searchProductsByImage(formData);
+                    } else {
+                        console.log('Please select an image to search.');
                     }
-                    else {
-                        console.log('Please select an item to search.');
+                });
+        
+                const searchFormText = document.getElementById('search-form-text');
+                searchFormText.addEventListener('submit', function (event) {
+                    document.querySelector('.product-grid-view .row').innerHTML = '';
+                    loadingContainer.addClass('inside');
+                    event.preventDefault();
+                    const inputValue = document.getElementById('search-by-text').value;
+        
+                    if (inputValue) {
+                        searchProductsByText(inputValue);
+                        watsonXBody.textContent = 'Contenido después de una búsqueda por texto';
+                    } else {
+                        console.log('Please enter something to search.');
                     }
-            });
-
-            const searchProductsByImage = async (formData) => {
-                try {
-                    const response = await fetch('https://149.81.161.78:5050/imgsearch', {
-                    // const response = await fetch('http://localhost:5050/imgsearch', {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                });
+        
+                const searchProductsByImage = async (formData) => {
+                    try {
+                        const response = await fetch('http://149.81.161.78:5050/imgsearch', {
+                            method: 'POST',
+                            body: formData
+                        });
+        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+        
+                        const data = await response.json();
+                        imgButton = false;
+                        displayProducts(data);
+                        loadingContainer.removeClass('inside');
+        
+                    } catch (error) {
+                        console.error('There was an error with the image search:', error);
                     }
-
-                    const data = await response.json();
-                    imgButton = false;
-                    displayProducts(data);
-                    loadingContainer.removeClass('inside');
-
-                } catch (error) {
-                    console.error('There was an error with the image search:', error);
-                }
-            };
-
-            const searchProductsByText = async (input) => {
-                try {
-                    const response = await fetch('https://149.81.161.78:5050/textsearch', {
-                    // const response = await fetch('http://localhost:5050/textsearch', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ "input": input })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                };
+        
+                const searchProductsByText = async (input) => {
+                    try {
+                        const response = await fetch('http://149.81.161.78:5050/textsearch', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ "input": input })
+                        });
+        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+        
+                        const data = await response.json();
+                        imgButton = false;
+                        displayProducts(data);
+                        loadingContainer.removeClass('inside');
+        
+                    } catch (error) {
+                        console.error('There was an error with the text search:', error);
                     }
-
-                    const data = await response.json();
-                    imgButton = false;
-                    displayProducts(data);
-                    loadingContainer.removeClass('inside');
-
-                } catch (error) {
-                    console.error('There was an error with the text search:', error);
-                }
-            };
-
-            const displayProducts = (products) => {
-                const rowContainer = document.querySelector('.product-grid-view .row');
-                rowContainer.innerHTML = '';
-
-                const prices = [19.95, 29.95, 39.95, 49.95];
-                products.result.forEach((product) => {
-                    var price = prices[Math.floor(Math.random()*prices.length)];
-                    const productDiv = document.createElement('div');
-                    productDiv.classList.add('col-lg-2', 'col-md-3', 'col-sm-4', 'col-xs-6');
-
-                    productDiv.innerHTML = `
+                };
+        
+                const displayProducts = (products) => {
+                    const rowContainer = document.querySelector('.product-grid-view .row');
+                    rowContainer.innerHTML = '';
+        
+                    const prices = [19.95, 29.95, 39.95, 49.95];
+                    products.result.forEach((product) => {
+                        var price = prices[Math.floor(Math.random() * prices.length)];
+                        const productDiv = document.createElement('div');
+                        productDiv.classList.add('col-lg-2', 'col-md-3', 'col-sm-4', 'col-xs-6');
+        
+                        productDiv.innerHTML = `
                             <div class="single-grid-product mb-40 mr-0 ml-0 p-0" style="position: relative">
                                 <div class="product-image p-0">
                                     <img src="${product.image_url}" class="img-fluid" alt="${product.description}" style="width: 375px; height: auto;">
@@ -779,18 +759,18 @@
                                 </div>
                             </div>
                         `;
-                        
-
-                    productDiv.addEventListener('click', () => {
-                        localStorage.setItem('selectedProduct', JSON.stringify(product));
-                        window.location.href = 'single-product.html';
+        
+                        productDiv.addEventListener('click', () => {
+                            localStorage.setItem('selectedProduct', JSON.stringify(product));
+                            window.location.href = 'single-product.html';
+                        });
+        
+                        rowContainer.appendChild(productDiv);
                     });
-
-                    rowContainer.appendChild(productDiv);
-                });
-            };
-        });
-    </script>
+                };
+            });
+        </script>
+        
 
 
 
