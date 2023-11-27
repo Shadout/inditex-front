@@ -1525,6 +1525,43 @@ ul.cart-items > li {
   margin-bottom:30px;
 }
 
+.watsonX-container{
+  /* position: relative; */
+  margin-right: 30px;
+  position: absolute;
+  right: 0;
+  width: 700px;
+  height: 0px;
+  background-color: #ffffff;
+  visibility: hidden;
+  z-index: 5;
+}
+
+.watsonX-title{
+  margin-top: 50px;
+  border: 1px solid #000000;
+  padding: 10px;
+  height: 50px;
+}
+
+.watsonX-body{
+  border: 1px solid #000000;
+  padding: 10px;
+  margin-top: -1px;
+}
+
+.close-watsonX{
+  position: absolute;
+  right: 0;
+  margin-right: 15px;
+  margin-top: -30px;
+}
+
+.watsonX-container.inside{
+  visibility: visible;
+  height: auto;
+}
+
 @media only screen and (max-width: 767px) {
   .main-search-active {
     padding: 32px 20px 39px;

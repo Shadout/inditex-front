@@ -134,6 +134,25 @@ function forYouFilter() {
 
 };
 forYouFilter();
+
+/*---------------------------- 
+   3. watsonX section
+-----------------------------*/
+function watsonXExplain() {
+    var searchTrigger = $('#watsonX-logo'),
+        endTriggersearch = $('.close-watsonX'),
+        container = $('.watsonX-container');
+
+    searchTrigger.on('click', function() {
+        container.addClass('inside');
+    });
+
+    endTriggersearch.on('click', function() {
+        container.removeClass('inside');
+    });
+
+};
+watsonXExplain();
 /*--
     - Background Image
 ------------------------------------------*/
