@@ -322,6 +322,11 @@
         </div>
         <!-- Offcanvas Menu End -->
 
+        <!-- LOADER -->
+        <div class="loader-container">
+            <span class="loader"></span>
+        </div>
+
         <!-- main-search start -->
         <div id="caption-container"></div>
         <div class="row">
@@ -618,6 +623,8 @@
             document.querySelector('.product-grid-view .row').innerHTML='';
         }
 
+        var loadingContainer = $('.loader-container');
+
         document.addEventListener('DOMContentLoaded', () => {
             
             const searchForm = document.getElementById('search-form');
@@ -671,6 +678,7 @@
 
             searchForm.addEventListener('submit', function (event) {
                 event.preventDefault();
+                loadingContainer.addClass('inside');
 
                 if (imageInput.files.length > 0) {
                     const formData = new FormData();
@@ -684,6 +692,8 @@
 
             const searchFormText = document.getElementById('search-form-text');
             searchFormText.addEventListener('submit', function (event) {
+                document.querySelector('.product-grid-view .row').innerHTML='';
+                loadingContainer.addClass('inside');
                 event.preventDefault();
                 const inputValue = document.getElementById('search-by-text').value;
              
@@ -709,6 +719,7 @@
                     const data = await response.json();
                     imgButton = false;
                     displayProducts(data);
+                    loadingContainer.removeClass('inside');
 
                 } catch (error) {
                     console.error('There was an error with the image search:', error);
@@ -733,6 +744,7 @@
                     const data = await response.json();
                     imgButton = false;
                     displayProducts(data);
+                    loadingContainer.removeClass('inside');
 
                 } catch (error) {
                     console.error('There was an error with the text search:', error);
