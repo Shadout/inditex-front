@@ -707,7 +707,8 @@
 
             const searchProductsByImage = async (formData) => {
                 try {
-                    const response = await fetch('http://localhost:5050/imgsearch', {
+                    const response = await fetch('http://149.81.161.78:5050/imgsearch', {
+                    // const response = await fetch('http://localhost:5050/imgsearch', {
                         method: 'POST',
                         body: formData
                     });
@@ -728,7 +729,8 @@
 
             const searchProductsByText = async (input) => {
                 try {
-                    const response = await fetch('http://localhost:5050/textsearch', {
+                    const response = await fetch('http://149.81.161.78:5050/textsearch', {
+                    // const response = await fetch('http://localhost:5050/textsearch', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
